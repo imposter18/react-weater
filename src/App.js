@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Header from "./pages/header";
+import MainUnit from "./pages/mainUnit";
+// import ".//index.css";
+import { gotCarrentCity, gotCarrentWeather } from "./servise/servise";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    let [city, updateCity] = useState("");
+    let [cityData, updateCityData] = useState([]);
+    let [currentCity, updateCurrentCity] = useState([]);
+    let [currentCityData, updateCurrentCityData] = useState({});
+
+    function update(value) {
+        updateCity(value);
+    }
+    useEffect(() => {
+        gotCarrentCity(city).then((data) => updateCityData(data));
+    }, [city]);
+
+    useEffect(() => {
+        gotCarrentWeather(currentCity).then((data) =>
+            updateCurrentCityData(data)
+        );
+        console.log(currentCityData);
+        document.getElementById("cityInput").value = "";
+    }, [currentCity]);
+
+    return (
+        <>
+            <Header
+                cityData={cityData}
+                updateItem={(value) => update(value)}
+                updateCurrentCity={updateCurrentCity}
+            ></Header>
+            {currentCityData.cod === 200 ? (
+                <MainUnit currentCityData={currentCityData}></MainUnit>
+            ) : null}
+        </>
+    );
 }
 
 export default App;
