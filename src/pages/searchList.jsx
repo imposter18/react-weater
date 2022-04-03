@@ -5,6 +5,7 @@ export default  function SearchList({className, data, onClick}){
     } else {
         name = data.name
     }
+    // console.log('list')
     return(
         <button href="#" className={`list-group-item list-group-item-action ${className}`} onClick={()=> onClick(data.lat, data.lon)} >
             <span>

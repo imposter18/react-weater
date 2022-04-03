@@ -3,6 +3,7 @@ import SearchList from "./searchList";
 
  
 export default function Header ({updateItem,cityData, updateCurrentCity}){
+    // console.log('header')
     
     let[ searchVisible, updateSearchVisible] = useState(false)
     // console.log(searchVisible)
@@ -39,13 +40,13 @@ export default function Header ({updateItem,cityData, updateCurrentCity}){
                     </svg>
                 </div>
                 <nav  className="header__nav">
-                    <div ref={searchRef} class="input-group rounded">
+                    <div ref={searchRef} className="input-group rounded">
                         <input id='cityInput' onInput={(e)=>updateItem(e.target.value)} 
                         onClick={updateVisible}
                         type="text" className="form-control rounded" placeholder="Search" 
                         aria-label="Search" aria-describedby="search-addon" />
                         <span  id="search-addon">
-                            <i class="bi bi-search"></i>
+                            <i className="bi bi-search"></i>
                         </span>
                     </div>
 

@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Header from "./pages/header";
 import MainUnit from "./pages/mainUnit";
-// import ".//index.css";
-import { gotCarrentCity, gotCarrentWeather } from "./servise/servise";
+import DayliWeather from "./pages/dayliWeather";
+import {
+    gotCarrentCity,
+    gotCarrentWeather,
+    gotFuturetWeather,
+} from "./servise/servise";
 
 function App() {
     let [city, updateCity] = useState("");
     let [cityData, updateCityData] = useState([]);
     let [currentCity, updateCurrentCity] = useState([]);
     let [currentCityData, updateCurrentCityData] = useState({});
+    let [futureWeatherData, updateFutureWeatherData] = useState({});
 
     function update(value) {
         updateCity(value);
@@ -21,9 +26,17 @@ function App() {
         gotCarrentWeather(currentCity).then((data) =>
             updateCurrentCityData(data)
         );
-        console.log(currentCityData);
+
         document.getElementById("cityInput").value = "";
     }, [currentCity]);
+
+    useEffect(() => {
+        gotFuturetWeather(currentCity).then((data) =>
+            updateFutureWeatherData(data)
+        );
+    }, [currentCityData]);
+
+    // console.log(futureWeatherData);
 
     return (
         <>
@@ -34,6 +47,11 @@ function App() {
             ></Header>
             {currentCityData.cod === 200 ? (
                 <MainUnit currentCityData={currentCityData}></MainUnit>
+            ) : null}
+            {futureWeatherData.hasOwnProperty("current") ? (
+                <DayliWeather
+                    futureWeatherData={futureWeatherData}
+                ></DayliWeather>
             ) : null}
         </>
     );
