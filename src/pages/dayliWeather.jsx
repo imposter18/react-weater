@@ -1,18 +1,27 @@
-import React from "react";
+import React,{useState} from "react";
+import DailyTab from "./dailyTab";
 
 export default function DayliWeather ({futureWeatherData}){
-    let {current :{dt}} = futureWeatherData
-    // let df = 235673389076
-    let dat = new Date(dt * 1000)
-    console.log( dat)
-
-
-
+    let { daily} = futureWeatherData
+    
+    const [indexDay, updateIndexDay] = useState(null)
+    console.log(indexDay)
     return(
-        <div className="dayliWeather">
-            {/* <span>{date}</span> */}
-
+        <>
+        <div className="dayliWeatherBlock">
+        {daily.map((data, index) =>
+            <DailyTab  className={ `dayliWeather ${index === indexDay? 'isActive': ''}`}  key={`${data.name}_${index}`} 
+                data={data}
+                index={index}
+                onClick={(index)=>updateIndexDay(index)}
+            ></DailyTab>
+        )}
+            
         </div>
+        <div>{
+            indexDay && daily[indexDay].humidity
+        }</div>
+        </>
     )
 
 

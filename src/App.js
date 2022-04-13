@@ -36,7 +36,7 @@ function App() {
         );
     }, [currentCityData]);
 
-    // console.log(futureWeatherData);
+    console.log(futureWeatherData);
 
     return (
         <>
