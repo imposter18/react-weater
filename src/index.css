@@ -37,7 +37,7 @@ header {
 }
 .carentWeaterContainer {
     max-width: 700px;
-    height: 200px;
+    max-height: 300px;
     background-image: -webkit-linear-gradient(top, #004796, #00a3de);
     border-radius: 5px;
     color: #fff;
@@ -54,6 +54,7 @@ header {
     row-gap: 15%;
     margin-left: 16px;
     padding-top: 16px;
+    padding-bottom: 16px;
 }
 
 .carrenrWeater_daily {
@@ -92,14 +93,15 @@ input[type="text"]::-ms-clear {
     max-width: 900px;
     height: 240px;
     background-image: -webkit-linear-gradient(top, #004796, #00a3de);
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     color: #fff;
     margin: auto;
 }
 .dayliWeather{
     display: flex;
     flex-direction: column;
-    width: 100px;
+    width: 120px;
     padding-top: 16px;
 }
 .dayliWeather__img img{
@@ -107,7 +109,9 @@ input[type="text"]::-ms-clear {
     text-align: center;
 
 }
-
+.carrentWeater_night{
+    padding-right: 6px;
+}
 .dayliWeather__dat{
     font-size: 12px;
 }
@@ -125,4 +129,17 @@ text-align: center;
 }
 .isActive{
     background-color: #004796;
+}
+
+.dayliWeatherInfo{
+    max-width: 900px;
+    background-color: #004796;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+.dayliWeatherInfo span{
+    margin: 6px auto;
+
 }

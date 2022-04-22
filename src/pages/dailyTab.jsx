@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function DailyTab ({data,index,onClick,className}){
-    let {dt, humidity, pressure, temp:{day, night}, weather:[{description, icon}]} = data
+    let {dt, temp:{day, night}, weather:[{description, icon}]} = data
     let month = ['Янв', 'Фев', 'Март', 'Апр','Май','Июнь', 'Июль' , 'Авг' ,' Сент', 'Окт', 'Ноя', 'Дек' ]
     let dayData = ['Вс','Пн','Вт','Ср','Чт','Пт','Сб',]
 

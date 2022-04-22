@@ -62,7 +62,7 @@ export default function Header ({updateItem,cityData, updateCurrentCity}){
                 <div className="header__choose">
                         
                     <div className="header__choose--lang">
-                        RU |
+                        RU|
                     </div>
                     <div className="header__choose--deg">
                         C

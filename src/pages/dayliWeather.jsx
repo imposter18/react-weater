@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import DailyTab from "./dailyTab";
+import DayliWeatherInfo from "./dayliWeatherInfo";
 
 export default function DayliWeather ({futureWeatherData}){
     let { daily} = futureWeatherData
@@ -18,9 +19,9 @@ export default function DayliWeather ({futureWeatherData}){
         )}
             
         </div>
-        <div>{
-            indexDay && daily[indexDay].humidity
-        }</div>
+        {indexDay !== null ? <DayliWeatherInfo daily={daily[indexDay]}></DayliWeatherInfo> : null
+            
+        }
         </>
     )
 
