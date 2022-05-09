@@ -1,3 +1,5 @@
+import React from "react";
+
 export default  function SearchList({className, data, onClick}){
     let name
      if(data.hasOwnProperty("local_names") && data.local_names.hasOwnProperty("ru") ){

@@ -1,12 +1,23 @@
 import React,{useRef, useEffect, useState} from "react";
 import SearchList from "./searchList";
+import {  useDispatch,useSelector } from 'react-redux';
 
  
-export default function Header ({updateItem,cityData, updateCurrentCity}){
-    // console.log('header')
-    
+function Header (){
+    const dispatch = useDispatch()
+    const updateInputData = (e)=>{
+        dispatch({type:"UPDATE_SEARCH", data: e.target.value})
+    }
+
+    const cityData = useSelector(state => state.dataReducer.data)
+
+
     let[ searchVisible, updateSearchVisible] = useState(false)
-    // console.log(searchVisible)
+    
+
+    const updateCurrentCity = (coorrdinates) => {
+        dispatch({type: "UPDATE_COORDINATES", data: coorrdinates})
+    }
 
     let data = []
     for( let i = 0; i < cityData.length ; i++){
@@ -41,7 +52,7 @@ export default function Header ({updateItem,cityData, updateCurrentCity}){
                 </div>
                 <nav  className="header__nav">
                     <div ref={searchRef} className="input-group rounded">
-                        <input id='cityInput' onInput={(e)=>updateItem(e.target.value)} 
+                        <input id='cityInput' onInput={(e)=>updateInputData(e)} 
                         onClick={updateVisible}
                         type="text" className="form-control rounded" placeholder="Search" 
                         aria-label="Search" aria-describedby="search-addon" />
@@ -73,3 +84,4 @@ export default function Header ({updateItem,cityData, updateCurrentCity}){
     </div>
     )
 }
+export default Header
